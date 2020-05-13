@@ -8,8 +8,6 @@ public static class Util
     Vector2 differenceSquared = difference * difference;
     float distanceSquared = differenceSquared.x + differenceSquared.y;
     float distance = Mathf.Sqrt(distanceSquared);
-    float overlap = radius1 + radius2 - distance;
-    Debug.Log($"Distance: {distance} Radius 1: {radius1} Radius 2: {radius2} Overlap: {overlap}");
-    return overlap;
+    return radius1 + radius2 - distance;
   }
 }
