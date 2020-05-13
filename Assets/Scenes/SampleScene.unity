@@ -301,7 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efba1592e854f78beb883e64809b8f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAccel: 0.1
+  inputAccel: 10
+  rigidBody: {fileID: 0}
 --- !u!50 &1059282442
 Rigidbody2D:
   serializedVersion: 4
@@ -313,7 +314,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
@@ -421,12 +422,17 @@ PrefabInstance:
     - target: {fileID: 1368561111180037835, guid: d6afb520d859c5cd6bd2c238c85d5454,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1368561111180037835, guid: d6afb520d859c5cd6bd2c238c85d5454,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356424112793068336, guid: d6afb520d859c5cd6bd2c238c85d5454,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6afb520d859c5cd6bd2c238c85d5454, type: 3}
