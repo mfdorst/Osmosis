@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CellCollide : MonoBehaviour
 {
+  public Vector2 velocity;
+
   new Rigidbody2D rigidbody;
 
   private void Start()
   {
     rigidbody = GetComponent<Rigidbody2D>();
+  }
+
+  private void FixedUpdate()
+  {
+    velocity = rigidbody.velocity;
   }
 
   void OnTriggerStay2D(Collider2D other)
@@ -25,17 +32,15 @@ public class CellCollide : MonoBehaviour
         // Grow.
         // When growing, take on the velocity of any mass you aquire.
         // Get the area before we take on any new mass.
-        float areaBefore = Util.CircleArea(transform.localScale.x);
+        float massBefore = Util.CircleArea(transform.localScale.x);
         // Increase size
         transform.localScale += new Vector3(overlap, overlap, 0);
         // Get the area again after taking on new mass.
-        float areaAfter = Util.CircleArea(transform.localScale.x);
+        float massAfter = Util.CircleArea(transform.localScale.x);
         // Compute the amount of new mass aquired.
-        float massAquired = areaAfter - areaBefore;
-        //Debug.Log(massAquired);
+        float massAquired = massAfter - massBefore;
         // Apply force proportional to the mass aquired.
-        Debug.Log(other.attachedRigidbody.velocity);
-        rigidbody.AddForce(other.attachedRigidbody.velocity.normalized * massAquired);
+        rigidbody.velocity = rigidbody.velocity * massBefore / massAfter + other.GetComponent<Rigidbody2D>().velocity * massAquired / massAfter;
       }
       else
       {
