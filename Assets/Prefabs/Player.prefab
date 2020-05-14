@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efba1592e854f78beb883e64809b8f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAccel: 0
+  inputAccel: 5
 --- !u!1001 &4658380694694979911
 PrefabInstance:
   m_ObjectHideFlags: 0
