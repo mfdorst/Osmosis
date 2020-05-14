@@ -2,7 +2,7 @@
 
 public class PlayerMove : MonoBehaviour
 {
-  public float inputAccel;
+  public float inputAccel = 10;
   new Rigidbody2D rigidbody;
 
   Vector2 input;
