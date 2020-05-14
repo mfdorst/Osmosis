@@ -3,14 +3,13 @@
 public class PlayerMove : MonoBehaviour
 {
   public float inputAccel;
-  public Rigidbody2D rigidBody;
+  new Rigidbody2D rigidbody;
 
   Vector2 input;
 
   void Start()
   {
-    rigidBody = GetComponent<Rigidbody2D>();
-    rigidBody.mass = transform.localScale.x;
+    rigidbody = GetComponent<Rigidbody2D>();
   }
 
   void Update()
@@ -21,6 +20,7 @@ public class PlayerMove : MonoBehaviour
 
   void FixedUpdate()
   {
-    rigidBody.AddForce(input * inputAccel);
+    rigidbody.mass = transform.localScale.x;
+    rigidbody.AddForce(input * inputAccel);
   }
 }
