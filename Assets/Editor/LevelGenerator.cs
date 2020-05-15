@@ -25,13 +25,14 @@ public class LevelGenerator : EditorWindow
     GUILayout.Space(5);
     GUILayout.BeginHorizontal();
     {
-      if (GUILayout.Button("Randomize Seed"))
+      if (GUILayout.Button("Generate From Seed"))
+      {
+        GenerateLevel();
+      }
+      if (GUILayout.Button("Generate Random"))
       {
         seed = Random.Range(0, int.MaxValue);
         Repaint();
-      }
-      if (GUILayout.Button($"{(level ? "Regenerate" : "Generate")} Level"))
-      {
         GenerateLevel();
       }
     }
@@ -46,6 +47,7 @@ public class LevelGenerator : EditorWindow
     }
     level = new GameObject("Level");
     Instantiate(player, level.transform);
+    Random.InitState(seed);
     for (int i = 0; i < numCells; i++)
     {
       SpawnCell();
@@ -56,11 +58,13 @@ public class LevelGenerator : EditorWindow
   {
     Vector2 position;
     Collider2D[] overlapping;
+    int i = 0;
     do
     {
-      position = new Vector2(Random.Range(-8, 8), Random.Range(-5, 5));
-      overlapping = Physics2D.OverlapCircleAll(position, 1);
-    } while (overlapping.Length > 0);
+      position = new Vector2(Random.Range(-8f, 8), Random.Range(-5f, 5));
+      overlapping = Physics2D.OverlapCircleAll(position, 0.5f);
+      // If the new cell would overlap another cell, try again. Try a maximum of 1000 times.
+    } while (overlapping.Length > 0 && i++ < 1000);
 
     Instantiate(cell, position, Quaternion.identity, level.transform);
   }
